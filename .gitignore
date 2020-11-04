@@ -1,0 +1,8 @@
+malloc
+*.o
+.vscode
+.gdb*
+peda*
+*.so
+*.out
+logs
