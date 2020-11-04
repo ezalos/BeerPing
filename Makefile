@@ -6,7 +6,7 @@
 #    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/11/04 21:29:09 by ezalos           ###   ########.fr        #
+#    Updated: 2020/11/04 21:32:30 by ezalos           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(HEADERS)
-	ln -sf $(NAME) libft_malloc.so
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCS) Makefile
 	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
@@ -92,7 +91,7 @@ tests: $(NAME)
 endif
 
 prototypes:
-	python3 .tmp/prototype_catcher.py srcs includes/prototypes_malloc.h malloc
+	python3 .tmp/prototype_catcher.py srcs includes/prototypes_ping.h ping
 
 REQUEST 		= 'read -p "Enter a commit message:	" pwd && echo $$pwd'
 COMMIT_MESSAGE ?= $(shell bash -c $(REQUEST))
