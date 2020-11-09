@@ -6,7 +6,7 @@
 #    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/11/04 21:32:30 by ezalos           ###   ########.fr        #
+#    Updated: 2020/11/05 16:32:40 by ezalos           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,9 +53,6 @@ $(NAME): $(OBJS)
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCS) Makefile
 	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
-$(TESTOR): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TESTOR) $(HEADERS)
-
 clean:
 	rm -rf $(OBJS)
 
@@ -78,17 +75,8 @@ ifneq "$(SUPPORTS_MAKE_ARGS)" ""
   $(eval $(COMMAND_ARGS):;@:)
 endif
 
-run: $(TESTOR)
-	./$(TESTOR) $(COMMAND_ARGS)
-
-UNAME			:=	$(shell uname)
-ifeq ($(UNAME),Linux)
-tests: $(NAME)
-	sh .tmp/script_linux.sh $(COMMAND_ARGS)
-else
-tests: $(NAME)
-	sh .tmp/script_macos.sh $(COMMAND_ARGS)
-endif
+run: $(NAME)
+	./$(NAME) $(COMMAND_ARGS)
 
 prototypes:
 	python3 .tmp/prototype_catcher.py srcs includes/prototypes_ping.h ping
