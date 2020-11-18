@@ -50,7 +50,7 @@ void	print_ip(struct addrinfo *p)
 //            };
 
 // struct sockaddr_in {
-// 	sa_family_t    sin_family; /* famille d'adresses : AF_INET     */
+//		sa_family_t    sin_family; /* famille d'adresses : AF_INET     */
 //     uint16_t       sin_port;   /* port dans l'ordre d'octets réseau */
 //     struct in_addr sin_addr;   /* adresse Internet                  */
 // };

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/11/12 19:50:41 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/11/18 18:01:16 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <netdb.h>
 #include <string.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 void	print_ip(struct addrinfo *p);
 
