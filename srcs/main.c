@@ -16,6 +16,7 @@ struct addrinfo		*get_addr_info_from_url(const char *url)
     struct addrinfo   *res;
     int               error;
 
+    res = NULL;
     memset(&hints, 0, sizeof(hints));
     error = getaddrinfo(url, NULL, &hints, &res);
     if (error)

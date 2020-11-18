@@ -27,8 +27,13 @@ void	print_ip(struct addrinfo *p)
 			ipver = '6';
 		}
 		// Conversion de l'adresse IP en une chaîne de caractères
-		inet_ntop(p->ai_family, addr, ipstr, sizeof(ipstr));
-		printf(" IPv%c: %s\n", ipver, ipstr);
+		if (p->ai_family == AF_INET || p->ai_family == AF_INET6)
+		{
+			const char *tmp;
+			tmp = inet_ntop(p->ai_family, addr, ipstr, sizeof(ipstr));
+			if (tmp == ipstr)
+				printf(" IPv%c: %s\n", ipver, ipstr);
+		}
 		// Adresse suivante
 		p = p->ai_next;
 	}
@@ -44,10 +49,16 @@ void	print_ip(struct addrinfo *p)
 //                struct addrinfo *ai_next;
 //            };
 
-// struct sockaddr {
-//    sa_family_t sa_family;
-//    char        sa_data[14];
-// }
+// struct sockaddr_in {
+// 	sa_family_t    sin_family; /* famille d'adresses : AF_INET     */
+//     uint16_t       sin_port;   /* port dans l'ordre d'octets réseau */
+//     struct in_addr sin_addr;   /* adresse Internet                  */
+// };
+
+/* Adresse Internet */
+// struct in_addr {
+//     uint32_t       s_addr;     /* Adresse dans l'ordre d'octets réseau */
+// };
 
 int		fetch_ip_of_url(const char *url)
 {
