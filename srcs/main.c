@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:23:05 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/11 15:02:49 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/18 19:02:27 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*get_ipntop(struct addrinfo *p)
 	struct sockaddr_in	*sa_in;
 	char				*ip_share;
 
-	if ((ip_share = malloc(INET_ADDRSTRLEN)) == NULL)
+	if ((ip_share = malloc(INET_ADDRSTRLEN)) == NULL)// TODO: utiliser cst mem
 	{
 		fprintf(stderr, "Error malloc\n");
 		return (NULL);
@@ -171,7 +171,6 @@ void	prepare_socket(t_infos *ping)
 		perror ("setsockopt() failed to bind to interface ");
 		exit (EXIT_FAILURE);
 	}
-
 }
 
 
@@ -188,7 +187,7 @@ int		main(int ac, char **av)
 	memset(&ping, 0, sizeof(t_infos));
 	ping.addr = get_addr_info_from_url(av[1]);
 	ping.dst_addr = get_ipntop(ping.addr);
-	ping.src_addr = "0.0.0.0";
+	ping.src_addr = "0.0.0.0";// TODO check if src_addr is good
 	check_interface(&ping);
 	// open_socket_for_communication_with_server(&ping);
 	send_packet(&ping);

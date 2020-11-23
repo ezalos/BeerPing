@@ -6,7 +6,7 @@
 /*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 14:58:43 by ezalos            #+#    #+#             */
-/*   Updated: 2020/11/11 15:09:42 by ezalos           ###   ########.fr       */
+/*   Updated: 2020/11/18 18:32:29 by ezalos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int8_t		check_interface(t_infos *ping)
 	strcpy (interface, "wlp2s0");
 
 	// Submit request for a socket descriptor to look up interface.
-	if ((ping->sockid = socket (PF_PACKET, SOCK_RAW, htons (ETH_P_ALL))) < 0)
+	if ((ping->sockid = socket (PF_PACKET, SOCK_RAW, htons (ETH_P_ALL))) < 0)// TODO htons illegal
 	{
 		perror ("socket() failed to get socket descriptor for using ioctl() ");
 		exit (EXIT_FAILURE);
