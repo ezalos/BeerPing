@@ -1,48 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/23 14:02:13 by ezalos            #+#    #+#             */
+/*   Updated: 2020/11/23 14:02:27 by ezalos           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "head.h"
 
-typedef struct			s_infos
+int		main(int ac, char *av[])
 {
-	struct addrinfo		*addr;
-	int					name1;
-	int					name2;
-}						t_infos;
+	t_infos				ping;
 
-/*
-**	From a string containing an URL, get us the struct addrinfo
-*/
-struct addrinfo		*get_addr_info_from_url(const char *url);
-
-
-/*
-**	This function takes care of creating a ready to use socket for communication with the struct addrinfo
-**	setsockopt may be need to be called
-*/
-// Does socket takes care of internet communication ?
-int					open_socket_for_communication_with_server(struct addrinfo *addr);
-
-
-/*
-**	This function format the ICMP datagram
-*/
-void				*get_icmp_hdr(void *ip_hdr, void *data, size_t len);
-
-/*
-**	This function send the icmp request
-*/
-// Does sendto fills all the different OSI protocol headers ?
-void				*send_icmp_to_addr(void *ip_hdr, void *data, size_t len);
-
-/*
-**	This function listen for answers and deduce for each the time took, and other infos
-*/
-// How to know which answer is for which message ?
-void				*listen_for_answers(void);
-
-
-int		main(int ac, char **av)
-{
 	if (ac != 2)
-		return (0);
-	(void)av;
-	return (0);
+	{
+		printf("Usage: %s <address>\n", av[0]);
+		return 0;
+	}
+	bzero(&ping, sizeof(ping));
+	ping.user_input = av[1];
+	ping.dest = dns_lookup(ping.user_input, &ping.ping_dest);
+	if(ping.dest == NULL)
+	{
+		printf("\nDNS lookup failed! Could not resolve hostname!\n");
+		return 0;
+	}
+
+	ping.reverse_hostname = reverse_dns_lookup(ping.dest);
+	printf("\nTrying to connect to '%s' IP: %s\n", av[1], ping.dest);
+	printf("\nReverse Lookup domain: %s", ping.reverse_hostname);
+
+	//socket()
+	ping.sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
+	if(ping.sockfd < 0)
+	{
+		printf("\nSocket file descriptor not received!!\n");
+		return 0;
+	}
+	else
+		printf("\nSocket file descriptor %d received\n", ping.sockfd);
+
+	signal(SIGINT, intHandler);
+	send_ping(&ping);
+
+	return 0;
 }
