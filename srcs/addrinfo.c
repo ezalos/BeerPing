@@ -38,27 +38,6 @@ void	print_ip(struct addrinfo *p)
 		p = p->ai_next;
 	}
 }
-// struct addrinfo {
-//                int              ai_flags;
-//                int              ai_family;
-//                int              ai_socktype;
-//                int              ai_protocol;
-//                socklen_t        ai_addrlen;
-//                struct sockaddr *ai_addr;
-//                char            *ai_canonname;
-//                struct addrinfo *ai_next;
-//            };
-
-// struct sockaddr_in {
-//		sa_family_t    sin_family; /* famille d'adresses : AF_INET     */
-//     uint16_t       sin_port;   /* port dans l'ordre d'octets réseau */
-//     struct in_addr sin_addr;   /* adresse Internet                  */
-// };
-
-/* Adresse Internet */
-// struct in_addr {
-//     uint32_t       s_addr;     /* Adresse dans l'ordre d'octets réseau */
-// };
 
 int		fetch_ip_of_url(const char *url)
 {
