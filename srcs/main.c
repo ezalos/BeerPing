@@ -7,6 +7,7 @@ int pingloop=1;
 void                terminate_ping_loop(int _)
 {
     (void)_;
+    // how can I clean my struct (addrifo) ?
     pingloop=0;
 }
 
@@ -15,13 +16,17 @@ void                send_ping(int sock_fd, t_infos *info)
     int8_t      ret;
 
     (void)sock_fd;
-    ret = gettimeofday(info->time_value, NULL);
+    ret = gettimeofday(&info->time_value, NULL);
     if (ret == FAILURE)
     {
         fprintf(stderr, "error when getting time of the day, sorry bro\n");
         return ;
     }
-    fprintf(stderr, "time is %ld\n", info->time_value->tv_sec);
+    fprintf(stderr, "sec : %ld\nmicro sec : %d\n", info->time_value.tv_sec, info->time_value.tv_usec);
+    while(pingloop == 1)
+    {
+        memset(&info.icmp_header, sizeof(info.icmp_header));
+    }
 }
 
 int		main(int ac, char **av)

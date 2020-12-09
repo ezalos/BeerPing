@@ -1,7 +1,7 @@
 #include "head.h"
 
 /*
-**	From a string containing an URL, get us the struct addrinfo
+** From a string containing an URL, get us the struct addrinfo
 ** FOR REVERSE DNS
 ** Historically, passing a host's own hostname to getaddrinfo() has been a popular
 ** technique for determining that host's IP address(es), but this is fragile,

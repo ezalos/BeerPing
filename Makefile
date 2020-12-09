@@ -6,7 +6,7 @@
 #    By: ezalos <ezalos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 16:46:57 by ezalos            #+#    #+#              #
-#    Updated: 2020/11/05 16:32:40 by ezalos           ###   ########.fr        #
+#    Updated: 2020/12/09 18:58:28 by amartinod        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME		= ft_ping
 TESTOR		= malloc_testor.out
 CC			= gcc
 
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= 
+# CFLAGS		= -Wall -Werror -Wextra
 
 
 # SO_FLAG	=

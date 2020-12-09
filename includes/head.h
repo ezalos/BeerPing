@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2020/12/08 20:04:54 by amartinod        ###   ########.fr       */
+/*   Updated: 2020/12/09 20:17:28 by amartinod        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@
 typedef struct			s_infos
 {
 	struct addrinfo		*addr;
-	struct timeval		*time_value;
+	struct timeval		time_value;
+	// https://sites.uclouvain.be/SystInfo/usr/include/netinet/ip_icmp.h.html
+	// header are great but message is missing, maybe check in ip.h ?
+	struct icmphdr		icmp_header;
 }						t_infos;
 
 /*
